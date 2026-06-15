@@ -1,0 +1,130 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+}
+
+:root {
+  --radius: 0.75rem;
+
+  /* Incident Command — dark slate + electric cyan */
+  --background: oklch(0.16 0.02 250);
+  --foreground: oklch(0.97 0.01 240);
+
+  --surface: oklch(0.21 0.025 250);
+  --surface-raised: oklch(0.25 0.028 250);
+
+  --card: oklch(0.21 0.025 250);
+  --card-foreground: oklch(0.97 0.01 240);
+
+  --popover: oklch(0.21 0.025 250);
+  --popover-foreground: oklch(0.97 0.01 240);
+
+  --primary: oklch(0.78 0.16 200);
+  --primary-foreground: oklch(0.15 0.02 250);
+
+  --secondary: oklch(0.28 0.03 250);
+  --secondary-foreground: oklch(0.97 0.01 240);
+
+  --muted: oklch(0.26 0.025 250);
+  --muted-foreground: oklch(0.68 0.02 250);
+
+  --accent: oklch(0.78 0.16 200);
+  --accent-foreground: oklch(0.15 0.02 250);
+
+  --destructive: oklch(0.68 0.22 25);
+  --destructive-foreground: oklch(0.98 0.01 240);
+
+  --success: oklch(0.74 0.17 155);
+  --success-foreground: oklch(0.15 0.02 250);
+
+  --warning: oklch(0.82 0.17 75);
+  --warning-foreground: oklch(0.18 0.02 250);
+
+  --border: oklch(0.32 0.025 250);
+  --input: oklch(0.28 0.025 250);
+  --ring: oklch(0.78 0.16 200);
+
+  --gradient-primary: linear-gradient(135deg, oklch(0.78 0.16 200), oklch(0.68 0.18 240));
+  --gradient-surface: linear-gradient(160deg, oklch(0.22 0.028 250), oklch(0.18 0.022 250));
+  --gradient-glow: radial-gradient(circle at 50% 0%, oklch(0.78 0.16 200 / 0.18), transparent 60%);
+
+  --shadow-glow: 0 0 0 1px oklch(0.78 0.16 200 / 0.25), 0 20px 50px -20px oklch(0.78 0.16 200 / 0.45);
+  --shadow-card: 0 1px 0 0 oklch(1 0 0 / 0.04) inset, 0 20px 40px -24px oklch(0 0 0 / 0.5);
+}
+
+.dark {
+  --background: oklch(0.16 0.02 250);
+  --foreground: oklch(0.97 0.01 240);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html, body { background-color: var(--color-background); color: var(--color-foreground); }
+  body {
+    background-image: var(--gradient-glow);
+    background-attachment: fixed;
+    font-feature-settings: "cv11", "ss01", "ss03";
+  }
+}
+
+@layer utilities {
+  .bg-gradient-primary { background-image: var(--gradient-primary); }
+  .bg-gradient-surface { background-image: var(--gradient-surface); }
+  .shadow-glow { box-shadow: var(--shadow-glow); }
+  .shadow-card { box-shadow: var(--shadow-card); }
+
+  .prose-incident :where(p, ul, ol) { margin: 0.5rem 0; line-height: 1.65; }
+  .prose-incident :where(ul, ol) { padding-left: 1.25rem; }
+  .prose-incident :where(ul) { list-style: disc; }
+  .prose-incident :where(ol) { list-style: decimal; }
+  .prose-incident :where(h1,h2,h3) { font-weight: 600; margin: 0.75rem 0 0.5rem; }
+  .prose-incident :where(code) {
+    background: var(--surface-raised);
+    padding: 0.1rem 0.35rem;
+    border-radius: 0.35rem;
+    font-size: 0.85em;
+  }
+  .prose-incident :where(strong) { color: var(--foreground); font-weight: 600; }
+
+  .scrollbar-thin::-webkit-scrollbar { width: 8px; height: 8px; }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 999px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover { background: var(--muted-foreground); }
+}
